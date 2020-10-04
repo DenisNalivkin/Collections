@@ -21,17 +21,26 @@ namespace ListTests
         public void TestOfHeadOfMethodUnderUsedAdd ()
         {
             list.Add(10);
-            Assert.AreEqual(list[0], 10);
-           
+            Assert.AreEqual(list[0], 10);    
         }
 
 
+
         [Test]
-        public void TestOfHeadOfMethodUnderUsedAdd()
+        public void TestForCheckOfCountOfList ()
         {
             list.Add(10);
-            list.Remove(10);
-            Assert.AreEqual(list[0], 10);
+            Assert.AreEqual(list.count, 1);
+        }
+
+
+
+
+        [Test]
+        public void TestForCheckReferenceNodeOfList()
+        {
+            list.Add(10);
+            Assert.AreEqual()
 
         }
 
