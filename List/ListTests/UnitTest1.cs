@@ -36,14 +36,7 @@ namespace ListTests
 
 
 
-        [Test]
-        public void TestForCheckReferenceNodeOfList()
-        {
-            list.Add(10);
-            Assert.AreEqual()
-
-        }
-
+      
 
 
 
