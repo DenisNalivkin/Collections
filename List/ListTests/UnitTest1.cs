@@ -30,7 +30,7 @@ namespace ListTests
         public void TestForCheckOfCountOfList ()
         {
             list.Add(10);
-            Assert.AreEqual(list.count, 1);
+            Assert.AreEqual(list.count, 0);
         }
 
 
