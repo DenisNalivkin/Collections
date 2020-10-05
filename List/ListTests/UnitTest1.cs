@@ -24,7 +24,6 @@ namespace ListTests
             Assert.AreEqual(list[0], 10);    
         }
 
-
         [Test]
         public void TestForCheckOfCountOfList ()
         {
@@ -52,8 +51,7 @@ namespace ListTests
             list.Add(20);
             Assert.Throws <IndexOutOfRangeException> (() => Console.WriteLine(list[2]));            
         }
-
-       
+      
         [Test]
         public void TestForCheckRealizingTheAbilityToChangeValueInNode ()
         {
@@ -68,7 +66,40 @@ namespace ListTests
 
 
 
-                [TearDown]
+        [Test]
+        public void TestForCheckMethodInsert()
+        {
+            list.Add(10);
+            list.Add(20);
+            list.Add(78);
+            list.Insert(2, 500);
+            Assert.AreEqual(list[2], 500);
+            Assert.AreEqual(list[3], 78);
+            
+        }
+
+        [Test]
+        public void TestForCheckImplementExceptionsInWorkMethodInsert()
+        {
+            list.Add(10);
+            list.Add(20);
+            Assert.Throws<IndexOutOfRangeException>(() => list.Insert(2,500));
+        }
+
+        [Test]
+        public void TestForCheckOfCountOflistUnderUsedOfMethodInsert()
+        {
+            list.Add(10);
+            list.Add(20);
+            list.Add(400);
+            Assert.AreEqual(list.count, 3);
+
+        }
+
+
+
+
+        [TearDown]
         public void TearDown()
         {
             Console.WriteLine("Test is done");
