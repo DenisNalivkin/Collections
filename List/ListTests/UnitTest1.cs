@@ -33,8 +33,6 @@ namespace ListTests
 
 
 
-
-
         [Test]
         public void TestForCheckIndexatorOfNode ()
         {
@@ -61,8 +59,6 @@ namespace ListTests
             Assert.AreEqual(list[0], 5);
 
         }
-
-
 
 
 
@@ -95,6 +91,44 @@ namespace ListTests
             Assert.AreEqual(list.count, 3);
 
         }
+
+
+
+
+        [Test]
+        public void TestForCheckMethodRemove()
+        {
+            list.Add(10);
+            list.Add(20);
+            list.Add(78);
+            list.Remove(20);
+            Assert.AreEqual(list[1], 78);
+        }
+
+        [Test]
+        public void TestForCheckMethodRemoveWhenTryingRemoveAbsentValue ()
+        {
+            list.Add(10);
+            list.Add(20);
+            list.Remove(200);
+            Assert.AreEqual(list[0], 10);
+            Assert.AreEqual(list[1], 20);
+
+
+        }
+
+        [Test]
+        public void TestForCheckOfCountOflistUnderUsedOfMethodRemove()
+        {
+            list.Add(10);
+            list.Add(20);
+            list.Add(78);
+            list.Remove(20);
+            Assert.AreEqual(list.count, 2);
+           
+        }
+
+
 
 
 
