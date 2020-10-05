@@ -17,7 +17,8 @@ namespace List
             list.Add(199);
             list.Add(200);
 
-
+            list.Clear();
+            Console.WriteLine(list[0]);
 
 
 
@@ -31,14 +32,14 @@ namespace List
             //}
 
 
-            list.Remove(20);
+            //list.Remove(20);
 
-            for (int i = 0; i < list.count; i++)
-            {
+            //for (int i = 0; i < list.count; i++)
+            //{
 
-                Console.WriteLine(list[i]);
+            //    Console.WriteLine(list[i]);
                
-            }
+            //}
 
             //bool c = list.Remove(1);
             //new List<int>().Con

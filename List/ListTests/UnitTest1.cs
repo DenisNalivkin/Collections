@@ -28,7 +28,7 @@ namespace ListTests
         public void TestForCheckOfCountOfList ()
         {
             list.Add(10);
-            Assert.AreEqual(list.count, 0);
+            Assert.AreEqual(list.count, 1);
         }
 
 
@@ -129,6 +129,28 @@ namespace ListTests
         }
 
 
+
+
+        [Test]
+        public void TestForCheckOfCountOflistUnderUsedOfMethodClear()
+        {
+            list.Add(10);
+            list.Add(20);
+            list.Add(78);
+            list.Clear();
+            Assert.AreEqual(list.count, 0);
+        }
+
+        [Test]
+        public void TestForCheckImplementExceptionsUnderUsedClear()
+        {
+            list.Add(10);
+            list.Add(20);
+            list.Clear();
+            Assert.Throws<IndexOutOfRangeException>(() => Console.WriteLine(list[0]));
+        }
+
+      
 
 
 
