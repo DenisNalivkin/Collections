@@ -141,8 +141,7 @@ namespace List
                 tail = null;
                 count = 0;
                 return;
-            }
-     
+            }  
         }
     }
     }
