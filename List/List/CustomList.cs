@@ -144,14 +144,12 @@ namespace List
             }
      
         }
-
-
     }
     }
 
 
 
-    //insert   (remove(T value) : bool)      clear indexator
+   
 
 
 
