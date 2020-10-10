@@ -11,7 +11,6 @@ namespace List
        public T Value { get;  set; }
         public Node<T> NextNode { get; set; }
      
-
         public Node()
         {
 

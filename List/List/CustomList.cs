@@ -28,7 +28,6 @@ namespace List
             count += 1;
         }
 
-
         public T this[int index]
         {
             get
@@ -60,13 +59,10 @@ namespace List
                 }
                 node.Value = value;
             }
-
         }
-
 
         public void Insert(int index, T value)
         {
-
             Node<T> currentNode = head;
             Node<T> previousNode = currentNode;
             Node<T> nodeToInsert = new Node<T>(value, null);
@@ -75,8 +71,7 @@ namespace List
             {
                 throw new IndexOutOfRangeException();
             }
-
-        
+       
             else if (index == 0)
             {
                 previousNode = currentNode;
@@ -131,7 +126,6 @@ namespace List
 
             return valueResideInNode;
         }
-
 
         public void Clear ()
         {

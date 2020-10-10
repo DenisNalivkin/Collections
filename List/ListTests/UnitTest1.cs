@@ -18,14 +18,15 @@ namespace ListTests
         }
 
         [Test]
-        public void TestOfHeadOfMethodUnderUsedAdd ()
+        public void TestGetOfValueHead ()
         {
             list.Add(10);
+            list.Add(20);
             Assert.AreEqual(list[0], 10);    
         }
 
         [Test]
-        public void TestForCheckOfCountOfList ()
+        public void TestGetOfValueCounter ()
         {
             list.Add(10);
             Assert.AreEqual(list.count, 1);
@@ -34,16 +35,18 @@ namespace ListTests
 
 
         [Test]
-        public void TestForCheckIndexatorOfNode ()
+        public void TestGetIndexOfNode ()
         {
             list.Add(10);
             list.Add(20);
             list.Add(78);
-            Assert.AreEqual(list[2],78);
+            Assert.AreEqual(list[0], 10);
+            Assert.AreEqual(list[1], 20);
+            Assert.AreEqual(list[2], 78);
         }
 
         [Test]
-        public void TestForCheckImplementExceptionsInIndexator ()
+        public void TestExceptionWnenCallNonExistentElement ()
         {
             list.Add(10);
             list.Add(20);
@@ -51,31 +54,29 @@ namespace ListTests
         }
       
         [Test]
-        public void TestForCheckRealizingTheAbilityToChangeValueInNode ()
+        public void TestGetValueOfNodeWnereChangedValue ()
         {
             list.Add(10);
             list.Add(20);
             list[0] = 5;
             Assert.AreEqual(list[0], 5);
-
         }
 
 
 
         [Test]
-        public void TestForCheckMethodInsert()
+        public void TestGetValueAfterUsedInsert()
         {
             list.Add(10);
             list.Add(20);
             list.Add(78);
             list.Insert(2, 500);
             Assert.AreEqual(list[2], 500);
-            Assert.AreEqual(list[3], 78);
-            
+            Assert.AreEqual(list[3], 78);         
         }
 
         [Test]
-        public void TestForCheckImplementExceptionsInWorkMethodInsert()
+        public void TestExceptionWhenInsertValueInNonExistentNode()
         {
             list.Add(10);
             list.Add(20);
@@ -83,56 +84,52 @@ namespace ListTests
         }
 
         [Test]
-        public void TestForCheckOfCountOflistUnderUsedOfMethodInsert()
+        public void TestGetValueCounterAfterUsedInsert()
         {
             list.Add(10);
             list.Add(20);
             list.Add(400);
             Assert.AreEqual(list.count, 3);
-
         }
 
 
 
-
         [Test]
-        public void TestForCheckMethodRemove()
+        public void TestGetValueNodeOfWhichRemovedValue()
         {
             list.Add(10);
             list.Add(20);
             list.Add(78);
-            list.Remove(20);
+            bool valueFoundAndRemoved = list.Remove(20);
             Assert.AreEqual(list[1], 78);
+            Assert.AreEqual(valueFoundAndRemoved, true);
         }
 
         [Test]
-        public void TestForCheckMethodRemoveWhenTryingRemoveAbsentValue ()
+        public void TestSituationsWhenTryingRemoveNonExistentValue ()
         {
             list.Add(10);
             list.Add(20);
-            list.Remove(200);
+            bool valueFoundAndRemoved = list.Remove(200);
             Assert.AreEqual(list[0], 10);
             Assert.AreEqual(list[1], 20);
-
-
+            Assert.AreEqual(valueFoundAndRemoved, false);
         }
 
         [Test]
-        public void TestForCheckOfCountOflistUnderUsedOfMethodRemove()
+        public void TestGetValueCounterAfterUsedRemove()
         {
             list.Add(10);
             list.Add(20);
             list.Add(78);
             list.Remove(20);
-            Assert.AreEqual(list.count, 2);
-           
+            Assert.AreEqual(list.count, 2);          
         }
 
 
 
-
         [Test]
-        public void TestForCheckOfCountOflistUnderUsedOfMethodClear()
+        public void TestGetValueCounterAfterUsedClear()
         {
             list.Add(10);
             list.Add(20);
@@ -142,7 +139,7 @@ namespace ListTests
         }
 
         [Test]
-        public void TestForCheckImplementExceptionsUnderUsedClear()
+        public void TestExceptionsAfterUsedClear()
         {
             list.Add(10);
             list.Add(20);
@@ -151,7 +148,6 @@ namespace ListTests
         }
 
       
-
 
 
 
