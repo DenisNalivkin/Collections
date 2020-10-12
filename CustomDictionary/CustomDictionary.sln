@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomDictionary", "CustomDictionary\CustomDictionary.csproj", "{59D544EA-F1F4-428D-B521-4F202D5C82CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForDictionary", "TestForDictonary\TestForDictionary.csproj", "{35AF83B1-ACE6-4F9E-AF68-008FD4DDA5DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59D544EA-F1F4-428D-B521-4F202D5C82CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59D544EA-F1F4-428D-B521-4F202D5C82CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59D544EA-F1F4-428D-B521-4F202D5C82CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59D544EA-F1F4-428D-B521-4F202D5C82CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35AF83B1-ACE6-4F9E-AF68-008FD4DDA5DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35AF83B1-ACE6-4F9E-AF68-008FD4DDA5DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35AF83B1-ACE6-4F9E-AF68-008FD4DDA5DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35AF83B1-ACE6-4F9E-AF68-008FD4DDA5DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
