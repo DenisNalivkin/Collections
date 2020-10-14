@@ -95,11 +95,11 @@ namespace CustomDictionary
         {
             foreach (var pair in KeyAndValuePairs)
             {
-                if(pair.Equals(key))
+                if(pair.key.Equals(key))
                 {
-                    Remove(pair.key);
-                    pair.value = new V();
-                    break;
+                    KeyAndValuePairs.Remove(pair);
+                    this.count -= 1;
+                    break;                                  
                 }
             }
         }
@@ -107,8 +107,9 @@ namespace CustomDictionary
         public void Clear ()
         {       
          KeyAndValuePairs.Clear();
-                    
+         this.count = 0;                    
         }
+
 
 
 
