@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace CustomDictionary
 {
-  public class CustomDictionary <T,V> 
+  public class CustomDictionary <T,V> where V : new()
     {      
-       List<PairKeyAndValue<T,V>> listForStoragePairKeyAndValue;
+       List<PairKeyAndValue<T,V>> KeyAndValuePairs;
        public int count { get; private  set; }
 
         public CustomDictionary()
         {
-           listForStoragePairKeyAndValue = new List<PairKeyAndValue<T, V>>();
+           KeyAndValuePairs = new List<PairKeyAndValue<T, V>>();
            
         }
 
@@ -22,11 +22,11 @@ namespace CustomDictionary
          get
           {
            PairKeyAndValue<T, V> currentPair;
-           foreach (var wantedKey in listForStoragePairKeyAndValue)
+           foreach (var pair in KeyAndValuePairs)
            {
-           if (wantedKey.key.Equals(key))
+           if (pair.key.Equals(key))
            {
-             return wantedKey.value;
+             return pair.value;
            }
 
            }
@@ -37,11 +37,11 @@ namespace CustomDictionary
          {
           PairKeyAndValue<T, V> currentPair;
           bool wasSeted = false;
-          foreach (var wantedKey in listForStoragePairKeyAndValue)
+          foreach (var pair in KeyAndValuePairs)
           {
-             if (wantedKey.key.Equals(key))
+             if (pair.key.Equals(key))
              {
-               wantedKey.value = value;
+               pair.value = value;
                wasSeted = true;
                break;                 
              }
@@ -56,7 +56,7 @@ namespace CustomDictionary
         public void Add (T key, V value)
         {
             PairKeyAndValue<T,V> pairKeyAndValue = new PairKeyAndValue<T,V>(key, value);
-            listForStoragePairKeyAndValue.Add(pairKeyAndValue);
+            KeyAndValuePairs.Add(pairKeyAndValue);
             count += 1;       
         }
 
@@ -64,9 +64,9 @@ namespace CustomDictionary
         {
             bool wantedKeyWasFound = false;
             PairKeyAndValue<T, V> currentPair;
-            foreach(var wantedKey in listForStoragePairKeyAndValue)
+            foreach(var pair in KeyAndValuePairs)
             {
-                if (wantedKey.key.Equals(Key))
+                if (pair.key.Equals(Key))
                 {
                     wantedKeyWasFound = true;
                     break;                    
@@ -74,6 +74,42 @@ namespace CustomDictionary
             }
             return wantedKeyWasFound;            
         }
+
+        public bool TryGetValue (T key, out V value) 
+        {           
+            value = new V();
+            bool wantedKeyWasFound = false;
+            foreach (var pair in KeyAndValuePairs)
+            {
+                if(pair.key.Equals(key))
+                {
+                    wantedKeyWasFound = true;
+                    value = pair.value;
+                    break;
+                }                        
+            }
+            return wantedKeyWasFound;           
+        }
+
+        public void Remove (T key)
+        {
+            foreach (var pair in KeyAndValuePairs)
+            {
+                if(pair.Equals(key))
+                {
+                    Remove(pair.key);
+                    pair.value = new V();
+                    break;
+                }
+            }
+        }
+
+        public void Clear ()
+        {       
+         KeyAndValuePairs.Clear();
+                    
+        }
+
 
 
 

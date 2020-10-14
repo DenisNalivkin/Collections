@@ -13,32 +13,32 @@ namespace TestForDictionary
     [TestFixture]
     public class TestsForDictionary
     {
-        CustomDictionary<int, string> CustomDictionary;
+        CustomDictionary<string, int> CustomDictionary;
         [SetUp]
-        public void Setup ()
+        public void Setup()
         {
-            CustomDictionary = new CustomDictionary<int, string>();
+            CustomDictionary = new CustomDictionary<string, int>();
         }
 
         [Test]
         public void TestUsingOfIndexatorForReceivingValue()
         {
-            CustomDictionary.Add(1, "one");
-            CustomDictionary.Add(2, "two");
-            CustomDictionary.Add(3, "tree");
-            Assert.AreEqual(CustomDictionary[2], "two");
-           
+            CustomDictionary.Add("one",1);
+            CustomDictionary.Add("two",2);
+            CustomDictionary.Add("tree",3);
+            Assert.AreEqual(CustomDictionary["two"], 2);
+
         }
 
         [Test]
         public void TestUsingOfIndexatorForChangesValue()
         {
-            CustomDictionary.Add(1, "one");
-            CustomDictionary.Add(2, "two");
-            CustomDictionary[1] = "ten";
-            Assert.AreEqual(CustomDictionary[1], "ten");
+            CustomDictionary.Add("one", 1);
+            CustomDictionary.Add("two", 2);
+            CustomDictionary["one"] = 10;
+            Assert.AreEqual(CustomDictionary["one"], 10);
         }
 
-      
+
     }
 }
