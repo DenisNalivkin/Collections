@@ -35,43 +35,68 @@ namespace CustomLinkedList
         }
 
         public T this[int index]
-        {
+        {           
             get
             {
-                Node<T> currentNode = new Node<T>();
-                currentNode = head;
-                for (int i = 0; i < index; i ++)
+                if (index >= Count)
                 {
-                    if (index >= Count)
+                    throw new System.NullReferenceException();
+                }
+                Node<T> currentNode = new Node<T>();
+                if (index < Count / 2)
+                {
+                    currentNode = head;
+                    for (int i = 0; i < index; i++)
                     {
-                        throw new System.NullReferenceException();
+                        currentNode = currentNode.nextNode;
                     }
-                    currentNode = currentNode.nextNode;
+                }
+                else
+                {
+                    currentNode = tail;
+                    for (int i = Count - 1; i > index; i--)
+                    {
+                        currentNode = currentNode.previousNode;
+                    }
                 }
                 return currentNode.value;
             }
-
+                
             set
             {
-                Node<T> currentNode = new Node<T>();
-                currentNode = head;
-                for (int i = 0; i < index; i++)
+                if (index >= Count)
                 {
-                    if (index >= Count)
-                    {
-                        throw new System.NullReferenceException();
-                    }
-                    currentNode = currentNode.nextNode;
+                    throw new System.NullReferenceException();
                 }
-                currentNode.value = value;
-                return;
+
+                Node<T> currentNode = new Node<T>();
+                if (index < Count / 2)
+                {
+                    currentNode = head;
+                    for (int i = 0; i < index; i++)
+                    {
+                        currentNode = currentNode.nextNode;
+                    }
+                    currentNode.value = value;
+                }
+                else
+                {
+                    currentNode = tail;
+                    for (int i = Count - 1; i > index; i--)
+                    {
+                        currentNode = currentNode.previousNode;
+                    }
+                    currentNode.value = value;
+                }
             }
-            
+             
         }
+            
+    }
 
 
 
 
 
     }
-}
+
