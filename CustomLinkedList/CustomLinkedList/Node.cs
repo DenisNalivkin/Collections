@@ -8,14 +8,24 @@ namespace CustomLinkedList
 {
   public class Node <T>
     {
-        T value { get; set; }
-        Node<T> previousNode { get; set; }
-        Node<T> nextNode { get; set; }
+       public T value { get; set; }
+       public Node<T> previousNode { get; set; }
+       public Node<T> nextNode { get; set; }
 
         public Node()
         {
         
-        } 
+        }
+
+        public Node( T value, Node<T> previousNode, Node<T> nextNode)
+        {
+            this.value = value;
+            this.previousNode = previousNode;
+            this.nextNode = nextNode;
+        }
+
+
+
 
     }
 }

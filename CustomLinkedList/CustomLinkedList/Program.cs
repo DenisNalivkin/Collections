@@ -10,10 +10,6 @@ namespace CustomLinkedList
     {
         static void Main(string[] args)
         {
-
-            
-
-
         }
     }
 }
