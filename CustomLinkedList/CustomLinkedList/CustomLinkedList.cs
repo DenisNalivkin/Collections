@@ -91,6 +91,53 @@ namespace CustomLinkedList
             }
              
         }
+
+        public void Insert (T value, int index)
+        {
+            if (index >= Count)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            Node<T> currentNode;
+            Node<T> nodeWithValueInsert = new Node<T>(value, null, null);
+            if (index == 0)
+            {
+                currentNode = head;
+                currentNode.previousNode = nodeWithValueInsert;
+                nodeWithValueInsert.nextNode = currentNode;
+                head = nodeWithValueInsert;
+                Count += 1;
+                return;
+            }
+            if ( index <= Count/2)
+            {
+                currentNode = head;
+                for (int i = 0; i < index; i ++)
+                {
+                    currentNode = currentNode.nextNode;
+                }
+                currentNode = currentNode.previousNode;
+                nodeWithValueInsert.nextNode = currentNode.nextNode;
+                nodeWithValueInsert.previousNode = currentNode;
+                currentNode.nextNode = nodeWithValueInsert;
+                Count += 1;
+                return;                                           
+            }
+            if (index > Count/2)
+            {
+                currentNode = tail;
+                for (int i = Count-1; i > index; i--)
+                {
+                    currentNode = currentNode.previousNode;
+                }
+                nodeWithValueInsert.previousNode = currentNode.previousNode;
+                nodeWithValueInsert.nextNode = currentNode;           
+                currentNode.previousNode = nodeWithValueInsert;
+                Count += 1;
+                return;
+            }
+        }
+
             
     }
 
