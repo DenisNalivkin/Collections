@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CustomLinkedList
 {
-    class CustomLinkedList<T>
+  public class CustomLinkedList<T>
     {
         Node<T> head { get; set; }
         Node<T> tail { get; set; }
@@ -22,7 +22,7 @@ namespace CustomLinkedList
             Node<T> currentNode = new Node<T>();
             Node<T> nodeWithNewValue = new Node<T>(value, null, null);
             if (head == null)
-            {      
+            {
                 head = nodeWithNewValue;
                 tail = head;
                 Count += 1;
@@ -31,17 +31,18 @@ namespace CustomLinkedList
             nodeWithNewValue.previousNode = tail;
             tail.nextNode = nodeWithNewValue;
             tail = nodeWithNewValue;
-            Count += 1;                 
+            Count += 1;
         }
 
         public T this[int index]
-        {           
+        {
             get
             {
                 if (index >= Count)
                 {
-                    throw new System.NullReferenceException();
+                    throw new System.ArgumentOutOfRangeException();
                 }
+
                 Node<T> currentNode = new Node<T>();
                 if (index < Count / 2)
                 {
@@ -61,12 +62,12 @@ namespace CustomLinkedList
                 }
                 return currentNode.value;
             }
-                
+
             set
             {
                 if (index >= Count)
                 {
-                    throw new System.NullReferenceException();
+                    throw new System.ArgumentOutOfRangeException();
                 }
 
                 Node<T> currentNode = new Node<T>();
@@ -89,61 +90,112 @@ namespace CustomLinkedList
                     currentNode.value = value;
                 }
             }
-             
+
         }
 
-        public void Insert (T value, int index)
+        public void Insert(T value, int index)
         {
             if (index >= Count)
             {
-                throw new IndexOutOfRangeException();
+                throw new System.ArgumentOutOfRangeException();
             }
-            Node<T> currentNode;
+            Node<T> currentNode = head;
             Node<T> nodeWithValueInsert = new Node<T>(value, null, null);
+            Node<T> copyPreviousNodeLocatedBeforeInsertValueNode;
             if (index == 0)
             {
-                currentNode = head;
-                currentNode.previousNode = nodeWithValueInsert;
-                nodeWithValueInsert.nextNode = currentNode;
+                nodeWithValueInsert.previousNode = null;
+                nodeWithValueInsert.nextNode = head;
                 head = nodeWithValueInsert;
                 Count += 1;
                 return;
             }
-            if ( index <= Count/2)
+            if (index <= Count / 2)
             {
-                currentNode = head;
-                for (int i = 0; i < index; i ++)
+                for (int i = 0; i < index; i++)
                 {
                     currentNode = currentNode.nextNode;
                 }
-                currentNode = currentNode.previousNode;
-                nodeWithValueInsert.nextNode = currentNode.nextNode;
-                nodeWithValueInsert.previousNode = currentNode;
+                copyPreviousNodeLocatedBeforeInsertValueNode = currentNode.previousNode;
+                nodeWithValueInsert.nextNode = currentNode;
+                nodeWithValueInsert.previousNode = copyPreviousNodeLocatedBeforeInsertValueNode;
+                currentNode.previousNode = nodeWithValueInsert;
+                currentNode = copyPreviousNodeLocatedBeforeInsertValueNode;
                 currentNode.nextNode = nodeWithValueInsert;
                 Count += 1;
-                return;                                           
+                return;
             }
-            if (index > Count/2)
+
+            if (index > Count / 2)
             {
                 currentNode = tail;
-                for (int i = Count-1; i > index; i--)
+                for (int i = Count - 1; i > index; i--)
                 {
                     currentNode = currentNode.previousNode;
                 }
-                nodeWithValueInsert.previousNode = currentNode.previousNode;
-                nodeWithValueInsert.nextNode = currentNode;           
+                copyPreviousNodeLocatedBeforeInsertValueNode = currentNode.previousNode;
+                nodeWithValueInsert.nextNode = currentNode;
+                nodeWithValueInsert.previousNode = copyPreviousNodeLocatedBeforeInsertValueNode;
                 currentNode.previousNode = nodeWithValueInsert;
+                currentNode = copyPreviousNodeLocatedBeforeInsertValueNode;
+                currentNode.nextNode = nodeWithValueInsert;
                 Count += 1;
                 return;
             }
         }
 
-            
+        public bool Remove(T value)
+        {
+            Node<T> currentNode = head;
+            Node<T> copyPreviousNodeLocatedBeforeRemoveNode;
+            bool valueWasRemoved = false; 
+            for (int i = 0; i < Count; i++)
+            {
+                if (currentNode.value.Equals(value) && currentNode == head)
+                {
+                    currentNode = currentNode.nextNode;
+                    currentNode.previousNode = null;
+                    head = currentNode;
+                    valueWasRemoved = true;
+                    Count -= 1;
+                    return valueWasRemoved;
+                }
+                if (currentNode.value.Equals(value) && currentNode == tail)
+                {
+                    currentNode = currentNode.previousNode;
+                    currentNode.nextNode = null;
+                    tail = currentNode;
+                    Count -= 1;
+                    valueWasRemoved = true;
+                    return valueWasRemoved;
+                }
+                else if (currentNode.value.Equals(value)) 
+                {
+                    currentNode = currentNode.previousNode;
+                    copyPreviousNodeLocatedBeforeRemoveNode = currentNode;
+                    currentNode.nextNode = currentNode.nextNode.nextNode;
+                    currentNode = currentNode.nextNode;
+                    currentNode.previousNode = copyPreviousNodeLocatedBeforeRemoveNode;                   
+                    Count -= 1;
+                    valueWasRemoved = true;
+                    return valueWasRemoved;
+                }
+                currentNode = currentNode.nextNode;
+            }
+            return valueWasRemoved;
+        }
+
+        public void Clear()
+        {
+            if (head != null)
+            {
+                head = null;
+                tail = null;
+                Count = 0;            
+            }
+        }
+
+
     }
-
-
-
-
-
-    }
+}
 

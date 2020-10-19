@@ -23,9 +23,5 @@ namespace CustomLinkedList
             this.previousNode = previousNode;
             this.nextNode = nextNode;
         }
-
-
-
-
     }
 }
