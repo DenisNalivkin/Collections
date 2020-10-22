@@ -19,7 +19,6 @@ namespace CustomLinkedList
 
         public void Add(T value)
         {
-            Node<T> currentNode = new Node<T>();
             Node<T> nodeWithNewValue = new Node<T>(value, null, null);
             if (head == null)
             {
