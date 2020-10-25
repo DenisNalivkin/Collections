@@ -10,17 +10,12 @@ namespace CustomLinkedList
     class LinkedListIEnumerator<T> : IEnumerator<T>
     {
         Node<T> head;
-        Node<T> tail;
         Node<T> currentNode;
 
-
-        public LinkedListIEnumerator(Node<T> head, Node<T> tail)
+        public LinkedListIEnumerator(Node<T> head)
         {
-            this.head = head;
-            this.tail = tail;
+            this.head = head;          
         }
-
-
 
         public T Current
         {
@@ -45,12 +40,23 @@ namespace CustomLinkedList
 
         public bool MoveNext()
         {
-            
+            if (currentNode == null)
+            {
+                currentNode = head;         
+                return true;
+            }
+            if (currentNode.nextNode != null)
+            {
+                currentNode = currentNode.nextNode;
+                return true;
+            }
+            Reset();
+            return false;
         }
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            currentNode = null;
         }
     }
 }

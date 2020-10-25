@@ -197,12 +197,12 @@ namespace CustomLinkedList
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return new LinkedListIEnumerator<T>(head);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }
