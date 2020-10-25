@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomLinkedList
 {
-  public class CustomLinkedList<T>
+  public class CustomLinkedList<T>: IEnumerable<T>
     {
         Node<T> head { get; set; }
         Node<T> tail { get; set; }
@@ -194,7 +195,15 @@ namespace CustomLinkedList
             }
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
