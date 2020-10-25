@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,23 +7,22 @@ using System.Threading.Tasks;
 
 namespace CustomDictionary
 {
-  public class CustomDictionary <T,V> where V : new()
+  public class CustomDictionary <T,V>: IEnumerable<T> /*where V : new()*/
     {      
-       List<PairKeyAndValue<T,V>> KeyAndValuePairs;
+       List<PairKeyAndValue<T,V>> keyAndValuePairs;
        public int count { get; private  set; }
 
         public CustomDictionary()
         {
-           KeyAndValuePairs = new List<PairKeyAndValue<T, V>>();
+           keyAndValuePairs = new List<PairKeyAndValue<T, V>>();
            
         }
 
         public V this[T key]
         {
          get
-          {
-           PairKeyAndValue<T, V> currentPair;
-           foreach (var pair in KeyAndValuePairs)
+          {        
+           foreach (var pair in keyAndValuePairs)
            {
            if (pair.key.Equals(key))
            {
@@ -35,9 +35,8 @@ namespace CustomDictionary
              
          set
          {
-          PairKeyAndValue<T, V> currentPair;
           bool wasSeted = false;
-          foreach (var pair in KeyAndValuePairs)
+          foreach (var pair in keyAndValuePairs)
           {
              if (pair.key.Equals(key))
              {
@@ -56,15 +55,14 @@ namespace CustomDictionary
         public void Add (T key, V value)
         {
             PairKeyAndValue<T,V> pairKeyAndValue = new PairKeyAndValue<T,V>(key, value);
-            KeyAndValuePairs.Add(pairKeyAndValue);
+            keyAndValuePairs.Add(pairKeyAndValue);
             count += 1;       
         }
 
         public bool ContainsKey(T Key)
         {
             bool wantedKeyWasFound = false;
-            PairKeyAndValue<T, V> currentPair;
-            foreach(var pair in KeyAndValuePairs)
+            foreach(var pair in keyAndValuePairs)
             {
                 if (pair.key.Equals(Key))
                 {
@@ -75,29 +73,29 @@ namespace CustomDictionary
             return wantedKeyWasFound;            
         }
 
-        public bool TryGetValue (T key, out V value) 
-        {           
-            value = new V();
-            bool wantedKeyWasFound = false;
-            foreach (var pair in KeyAndValuePairs)
-            {
-                if(pair.key.Equals(key))
-                {
-                    wantedKeyWasFound = true;
-                    value = pair.value;
-                    break;
-                }                        
-            }
-            return wantedKeyWasFound;           
-        }
+        //public bool TryGetValue (T key, out V value) 
+        //{           
+        //    value = new V();
+        //    bool wantedKeyWasFound = false;
+        //    foreach (var pair in KeyAndValuePairs)
+        //    {
+        //        if(pair.key.Equals(key))
+        //        {
+        //            wantedKeyWasFound = true;
+        //            value = pair.value;
+        //            break;
+        //        }                        
+        //    }
+        //    return wantedKeyWasFound;           
+        //}
 
         public void Remove (T key)
         {
-            foreach (var pair in KeyAndValuePairs)
+            foreach (var pair in keyAndValuePairs)
             {
                 if(pair.key.Equals(key))
                 {
-                    KeyAndValuePairs.Remove(pair);
+                    keyAndValuePairs.Remove(pair);
                     this.count -= 1;
                     break;                                  
                 }
@@ -106,18 +104,19 @@ namespace CustomDictionary
 
         public void Clear ()
         {       
-         KeyAndValuePairs.Clear();
+         keyAndValuePairs.Clear();
          this.count = 0;                    
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new CustomDictionaryIEnumeratorT_V <T,V>(keyAndValuePairs);
+        }
 
-
-
-
-
-
-
-
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 
 

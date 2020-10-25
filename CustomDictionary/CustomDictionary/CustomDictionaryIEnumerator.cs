@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace CustomDictionary
 {
-    class Program
+    class CustomDictionaryIEnumeratorT_V <T,V>: IEnumerator<T,V>
     {
-        static void Main(string[] args)
-        {
 
-           
 
-        }
+
+
+
     }
 }
