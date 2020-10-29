@@ -6,20 +6,25 @@ using System.Threading.Tasks;
 
 namespace CustomDictionary
 {
+
    public class PairKeyAndValue  <T,V>
     {
-        public T  key { get; set; }
-        public V  value {  get; set; }
-
+        public T Key { get; set; }
+        public V Value { get; set; }
         public PairKeyAndValue( T Key, V Value)
         {
-            this.key = Key;
-            this.value = Value;        
+            this.Key = Key;
+            this.Value = Value;        
         }
 
         public PairKeyAndValue ()
         {
             
+        }
+
+        public override string ToString()
+        {
+            return $"{Key}:{Value}";
         }
     }
 }

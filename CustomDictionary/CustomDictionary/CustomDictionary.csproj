@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="CustomDictionary.cs" />
     <Compile Include="CustomDictionaryIEnumeratorT,V.cs" />
-    <Compile Include="IEnumerator.cs" />
     <Compile Include="PairKeyAndValue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

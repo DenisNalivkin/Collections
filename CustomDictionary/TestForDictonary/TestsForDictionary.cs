@@ -51,11 +51,11 @@ namespace TestForDictionary
         [Test]
         public void TestDictionaryCountUsingAdd()
         {
-            Assert.AreEqual(CustomDictionary.count, 0);
+            Assert.AreEqual(CustomDictionary.Count, 0);
             CustomDictionary.Add("one", 1);
             CustomDictionary.Add("two", 2);
             CustomDictionary.Add("three", 3);
-            Assert.AreEqual(CustomDictionary.count, 3);
+            Assert.AreEqual(CustomDictionary.Count, 3);
         }
 
 
@@ -70,31 +70,31 @@ namespace TestForDictionary
             Assert.AreEqual(CustomDictionary.ContainsKey("ten"), false);
         }
 
-     
-        //[Test]
-        //public void TestKeyFindUsingTryGetValue()
-        //{
-        //    CustomDictionary.Add("one", 1);
-        //    CustomDictionary.Add("two", 2);
-        //    CustomDictionary.Add("three", 3);
-        //    CustomDictionary.Add("ten", 10);
-        //    int value;
-        //    Assert.AreEqual(CustomDictionary.TryGetValue("ten", out value), true);
-        //    Assert.AreEqual(CustomDictionary.TryGetValue("twenty", out value),false);
-        //}
 
-     
-        //[Test]
-        //public void TestKeyRemove ()
-        //{
-        //    CustomDictionary.Add("one", 1);
-        //    CustomDictionary.Add("two", 2);
-        //    CustomDictionary.Add("three", 3);
-        //    CustomDictionary.Add("ten", 10);
-        //    CustomDictionary.Remove("two");
-        //    int value;
-        //    Assert.AreEqual(CustomDictionary.TryGetValue("two", out value), false);
-        //}
+        [Test]
+        public void TestKeyFindUsingTryGetValue()
+        {
+            CustomDictionary.Add("one", 1);
+            CustomDictionary.Add("two", 2);
+            CustomDictionary.Add("three", 3);
+            CustomDictionary.Add("ten", 10);
+            int value;
+            Assert.AreEqual(CustomDictionary.TryGetValue("ten", out value), true);
+            Assert.AreEqual(CustomDictionary.TryGetValue("twenty", out value), false);
+        }
+
+
+        [Test]
+        public void TestKeyRemove()
+        {
+            CustomDictionary.Add("one", 1);
+            CustomDictionary.Add("two", 2);
+            CustomDictionary.Add("three", 3);
+            CustomDictionary.Add("ten", 10);
+            CustomDictionary.Remove("two");
+            int value;
+            Assert.AreEqual(CustomDictionary.TryGetValue("two", out value), false);
+        }
 
         [Test]
         public void TestDictionaryCountUsingRemove()
@@ -103,11 +103,11 @@ namespace TestForDictionary
             CustomDictionary.Add("two", 2);
             CustomDictionary.Add("three", 3);
             CustomDictionary.Add("ten", 10);
-            Assert.AreEqual(CustomDictionary.count, 4);
+            Assert.AreEqual(CustomDictionary.Count, 4);
             CustomDictionary.Remove("two");
-            Assert.AreEqual(CustomDictionary.count, 3);
+            Assert.AreEqual(CustomDictionary.Count, 3);
             CustomDictionary.Remove("twenty");
-            Assert.AreEqual(CustomDictionary.count, 3);
+            Assert.AreEqual(CustomDictionary.Count, 3);
         }
 
 
@@ -130,7 +130,7 @@ namespace TestForDictionary
             CustomDictionary.Add("three", 3);
             CustomDictionary.Add("ten", 10);
             CustomDictionary.Clear();
-            Assert.AreEqual(CustomDictionary.count, 0);            
+            Assert.AreEqual(CustomDictionary.Count, 0);            
         }
 
 

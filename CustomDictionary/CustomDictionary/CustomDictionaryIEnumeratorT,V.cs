@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,35 +7,34 @@ using System.Threading.Tasks;
 
 namespace CustomDictionary
 {
-    class CustomDictionaryIEnumeratorT_V <T,V>: IEnumerator<T,V>
+    class CustomDictionaryIEnumeratorT_V <T>: IEnumerator<T>
     {
-        List<PairKeyAndValue<T,V>> KeyAndValuePairs;
-        PairKeyAndValue<T,V> currentPair;
+        List<T> KeyAndValuePairs;
+        T currentPair;
         private int position;
       
 
-        public CustomDictionaryIEnumeratorT_V(List<PairKeyAndValue<T,V>> KeyAndValuePairs)
+        public CustomDictionaryIEnumeratorT_V(List<T> KeyAndValuePairs)
         {
             this.KeyAndValuePairs = KeyAndValuePairs;
             this.position = -1;
         }
 
 
-
         public T Current
         {
             get
-            {
-                return currentPair.key;               
+            {                         
+                return currentPair;
             }
             
         }
 
-        object IEnumerator<T,V>.Current
+        object IEnumerator.Current
         {
             get
             {
-                return (object)this.Current;
+                return currentPair;
             }
         }
 
@@ -45,7 +45,7 @@ namespace CustomDictionary
 
         public bool MoveNext()
         {
-           if ( currentPair == null && position == -1)
+           if (Current == null && position == -1)
             {
                 position++;
                 currentPair = KeyAndValuePairs[position];
@@ -64,7 +64,7 @@ namespace CustomDictionary
 
         public void Reset()
         {
-            currentPair = null;
+            currentPair = default(T);
         }
 
 

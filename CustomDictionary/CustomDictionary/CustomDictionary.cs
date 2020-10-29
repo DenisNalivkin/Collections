@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace CustomDictionary
 {
-  public class CustomDictionary <T,V>: IEnumerable<T> /*where V : new()*/
+  public class CustomDictionary <T,V>: IEnumerable<PairKeyAndValue<T, V>>
     {      
        List<PairKeyAndValue<T,V>> keyAndValuePairs;
-       public int count { get; private  set; }
+       public int Count { get; private  set; }
+       
+        
 
         public CustomDictionary()
         {
-           keyAndValuePairs = new List<PairKeyAndValue<T, V>>();
-           
+           keyAndValuePairs = new List<PairKeyAndValue<T, V>>();          
         }
 
         public V this[T key]
@@ -24,9 +25,9 @@ namespace CustomDictionary
           {        
            foreach (var pair in keyAndValuePairs)
            {
-           if (pair.key.Equals(key))
+           if (pair.Key.Equals(key))
            {
-             return pair.value;
+             return pair.Value;
            }
 
            }
@@ -38,9 +39,9 @@ namespace CustomDictionary
           bool wasSeted = false;
           foreach (var pair in keyAndValuePairs)
           {
-             if (pair.key.Equals(key))
+             if (pair.Key.Equals(key))
              {
-               pair.value = value;
+               pair.Value = value;
                wasSeted = true;
                break;                 
              }
@@ -56,7 +57,7 @@ namespace CustomDictionary
         {
             PairKeyAndValue<T,V> pairKeyAndValue = new PairKeyAndValue<T,V>(key, value);
             keyAndValuePairs.Add(pairKeyAndValue);
-            count += 1;       
+            Count += 1;       
         }
 
         public bool ContainsKey(T Key)
@@ -64,7 +65,7 @@ namespace CustomDictionary
             bool wantedKeyWasFound = false;
             foreach(var pair in keyAndValuePairs)
             {
-                if (pair.key.Equals(Key))
+                if (pair.Key.Equals(Key))
                 {
                     wantedKeyWasFound = true;
                     break;                    
@@ -73,30 +74,30 @@ namespace CustomDictionary
             return wantedKeyWasFound;            
         }
 
-        //public bool TryGetValue (T key, out V value) 
-        //{           
-        //    value = new V();
-        //    bool wantedKeyWasFound = false;
-        //    foreach (var pair in KeyAndValuePairs)
-        //    {
-        //        if(pair.key.Equals(key))
-        //        {
-        //            wantedKeyWasFound = true;
-        //            value = pair.value;
-        //            break;
-        //        }                        
-        //    }
-        //    return wantedKeyWasFound;           
-        //}
+        public bool TryGetValue(T key, out V value)
+        {
+            value = default(V);
+            bool wantedKeyWasFound = false;
+            foreach (var pair in keyAndValuePairs)
+            {
+                if (pair.Key.Equals(key))
+                {
+                    wantedKeyWasFound = true;
+                    value = pair.Value;
+                    break;             
+                }
+            }
+            return wantedKeyWasFound;
+        }
 
         public void Remove (T key)
         {
             foreach (var pair in keyAndValuePairs)
             {
-                if(pair.key.Equals(key))
+                if(pair.Key.Equals(key))
                 {
                     keyAndValuePairs.Remove(pair);
-                    this.count -= 1;
+                    this.Count -= 1;
                     break;                                  
                 }
             }
@@ -105,20 +106,20 @@ namespace CustomDictionary
         public void Clear ()
         {       
          keyAndValuePairs.Clear();
-         this.count = 0;                    
+         this.Count = 0;                    
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public IEnumerator<PairKeyAndValue<T, V>> GetEnumerator()
         {
-            return new CustomDictionaryIEnumeratorT_V <T,V>(keyAndValuePairs);
+            return new CustomDictionaryIEnumeratorT_V<PairKeyAndValue<T, V>>(keyAndValuePairs);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
+            throw new NotImplementedException();
         }
+
     }
 
-
-
+    
 }
