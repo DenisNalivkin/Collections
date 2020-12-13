@@ -104,8 +104,8 @@ namespace CustomLinkedList
             Node<T> copyPreviousNodeLocatedBeforeInsertValueNode;
             if (index == 0)
             {
-                nodeWithValueInsert.previousNode = null;
                 nodeWithValueInsert.nextNode = head;
+                head.previousNode = nodeWithValueInsert;
                 head = nodeWithValueInsert;
                 Count += 1;
                 return;

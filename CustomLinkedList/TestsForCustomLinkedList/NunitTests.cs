@@ -75,6 +75,18 @@ namespace TestsForCustomLinkedList
                 linkedList.Insert(100, 1);
                 Assert.AreEqual(linkedList[1], 100);
                 Assert.AreEqual(linkedList[2], 2);
+                Assert.AreEqual(linkedList[3], 3);          
+            }
+            [Test]
+            public void TestGetValueAfterUsedInsertToZeroNode()
+            {     
+                linkedList.Add(1);
+                linkedList.Add(2);
+                linkedList.Add(3);
+                linkedList.Insert(200, 0);
+                Assert.AreEqual(linkedList[0], 200);
+                Assert.AreEqual(linkedList[1], 1);
+                Assert.AreEqual(linkedList[2], 2);
                 Assert.AreEqual(linkedList[3], 3);
             }
             [Test]
