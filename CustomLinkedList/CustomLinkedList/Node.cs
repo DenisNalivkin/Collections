@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace CustomLinkedList
 {
-  public class Node <T>
+
+    /// <summary>
+    /// This class exist for keep data which after then will be keep in list.
+    /// </summary>
+    /// <typeparam name="T"> Node might keeps generic data.User will be determine type data.</typeparam>
+    public class Node <T>
     {
        public T value { get; set; }
        public Node<T> previousNode { get; set; }

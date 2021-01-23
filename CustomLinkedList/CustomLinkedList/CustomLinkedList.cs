@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace CustomLinkedList
 {
+    /// <summary>
+    /// This class keeps data in list.List has nodes which keep data.
+    /// </summary>
+    /// <typeparam name="T">List might keeps generic data.User will be determine type data.</typeparam>
   public class CustomLinkedList<T>: IEnumerable<T>
     {
         Node<T> head { get; set; }
@@ -18,6 +22,10 @@ namespace CustomLinkedList
 
         }
 
+        /// <summary>
+        /// This method adds new data in list.
+        /// </summary>
+        /// <param name="value">Value will be save in list. </param>
         public void Add(T value)
         {
             Node<T> nodeWithNewValue = new Node<T>(value, null, null);
@@ -34,6 +42,17 @@ namespace CustomLinkedList
             Count += 1;
         }
 
+
+
+
+        /// <summary>
+        /// Indexator will be to search value in list.Value index determine in input parameter. 
+        /// </summary>
+        /// <param name="index">Index which will be to use for search value in list </param>
+        /// <exception>
+        /// ArgumentOutOfRangeException
+        /// </exception>
+        /// <returns> Value which was found. </returns>
         public T this[int index]
         {
             get
@@ -93,6 +112,14 @@ namespace CustomLinkedList
 
         }
 
+        /// <summary>
+        /// This method insert new data in list by index.
+        /// </summary>
+        /// <exception >
+        /// ArgumentOutOfRangeException
+        /// </exception>
+        /// <param name="value"> Value determine data which will be insert in list by index. </param>
+        /// <param name="index"> Index determine place insert new value in list. </param>
         public void Insert(T value, int index)
         {
             if (index >= Count)
@@ -144,6 +171,11 @@ namespace CustomLinkedList
             }
         }
 
+        /// <summary>
+        /// This method removes data from list by determine value.Value determine in input parameter.
+        /// </summary>
+        /// <param name="value">Value which have got to find and remove.</param>
+        /// <returns>Return true if value was found and removed, and will return false if value was not found. </returns>
         public bool Remove(T value)
         {
             Node<T> currentNode = head;
@@ -185,6 +217,9 @@ namespace CustomLinkedList
             return valueWasRemoved;
         }
 
+        /// <summary>
+        /// This method removes all data from list.
+        /// </summary>
         public void Clear()
         {
             if (head != null)
@@ -195,11 +230,22 @@ namespace CustomLinkedList
             }
         }
 
+
+        /// <summary>
+        ///  This method exist for realization interface IEnumerable generic.
+        /// </summary>
+        /// <returns>Returns object which  realizations interface  IEnumerator generic.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             return new LinkedListIEnumerator<T>(head);
         }
 
+        /// <summary>
+        /// This method exist for realization interface IEnumerable.
+        /// </summary>
+        /// <returns>
+        /// Returns object which  realizations interface  IEnumerator.
+        /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
