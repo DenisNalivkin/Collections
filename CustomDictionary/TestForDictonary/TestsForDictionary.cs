@@ -41,7 +41,7 @@ namespace TestForDictionary
 
 
         [Test]
-        public void TestGetValueUsingAdd()
+        public void TestGetValueAfterUseAdd()
         {
             CustomDictionary.Add("one", 1);
             CustomDictionary.Add("two", 2);
@@ -49,7 +49,7 @@ namespace TestForDictionary
         }
 
         [Test]
-        public void TestDictionaryCountUsingAdd()
+        public void TestDictionaryCountAfterUseAdd()
         {
             Assert.AreEqual(CustomDictionary.Count, 0);
             CustomDictionary.Add("one", 1);
@@ -85,7 +85,7 @@ namespace TestForDictionary
 
 
         [Test]
-        public void TestKeyRemove()
+        public void TestGetKeyAfterRemove()
         {
             CustomDictionary.Add("one", 1);
             CustomDictionary.Add("two", 2);
@@ -97,7 +97,7 @@ namespace TestForDictionary
         }
 
         [Test]
-        public void TestDictionaryCountUsingRemove()
+        public void TestDictionaryCountAfterUseRemove()
         {
             CustomDictionary.Add("one", 1);
             CustomDictionary.Add("two", 2);
@@ -112,7 +112,7 @@ namespace TestForDictionary
 
 
         [Test]
-        public void TestGetExceptionUsingClear()
+        public void TestGetExceptionAfterUseClear()
         {
             CustomDictionary.Add("one", 1);
             CustomDictionary.Add("two", 2);
@@ -123,7 +123,7 @@ namespace TestForDictionary
         }
 
         [Test]
-        public void TestDictionaryCountUsingClear()
+        public void TestGetDictionaryCountAfterUseClear()
         {
             CustomDictionary.Add("one", 1);
             CustomDictionary.Add("two", 2);
