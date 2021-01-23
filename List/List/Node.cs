@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace List
 {
+    /// <summary>
+    /// This class created for keep data which after then will be keep in list.
+    /// </summary>
+    /// <typeparam name="T">Node might keeps generic data.User will be determine type data.</typeparam>
     class Node<T>
     {
        public T Value { get;  set; }

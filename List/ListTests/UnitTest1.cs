@@ -46,7 +46,7 @@ namespace ListTests
         }
 
         [Test]
-        public void TestExceptionWnenCallNonExistentElement ()
+        public void TestGetExceptionCallNonExistentElement ()
         {
             list.Add(10);
             list.Add(20);
@@ -54,7 +54,7 @@ namespace ListTests
         }
       
         [Test]
-        public void TestGetValueOfNodeWnereChangedValue ()
+        public void TestGetValueOfNodeAfterChangedValue ()
         {
             list.Add(10);
             list.Add(20);
@@ -76,7 +76,7 @@ namespace ListTests
         }
 
         [Test]
-        public void TestExceptionWhenInsertValueInNonExistentNode()
+        public void TestGetExceptionAfterInsertInNonExistentNode()
         {
             list.Add(10);
             list.Add(20);
@@ -95,7 +95,7 @@ namespace ListTests
 
 
         [Test]
-        public void TestGetValueNodeOfWhichRemovedValue()
+        public void TestGetValueOfNodeWhichWasRemoved()
         {
             list.Add(10);
             list.Add(20);
@@ -106,7 +106,7 @@ namespace ListTests
         }
 
         [Test]
-        public void TestSituationsWhenTryingRemoveNonExistentValue ()
+        public void TestGetNonExistentValue ()
         {
             list.Add(10);
             list.Add(20);
@@ -139,7 +139,7 @@ namespace ListTests
         }
 
         [Test]
-        public void TestExceptionsAfterUsedClear()
+        public void TestGetExceptionsAfterCallNonExistenValue()
         {
             list.Add(10);
             list.Add(20);
