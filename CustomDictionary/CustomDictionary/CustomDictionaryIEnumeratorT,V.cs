@@ -7,20 +7,24 @@ using System.Threading.Tasks;
 
 namespace CustomDictionary
 {
+    /// <summary>
+    /// This class implementation interface IEnumerator generic.
+    /// </summary>
+    /// <typeparam name="T">This generic type is object class PairKeyAndValue. </typeparam>
     class CustomDictionaryIEnumeratorT_V <T>: IEnumerator<T>
     {
-        List<T> KeyAndValuePairs;
+        List<T> listPairs;
         T currentPair;
         private int position;
       
 
         public CustomDictionaryIEnumeratorT_V(List<T> KeyAndValuePairs)
         {
-            this.KeyAndValuePairs = KeyAndValuePairs;
+            this.listPairs = KeyAndValuePairs;
             this.position = -1;
         }
 
-
+       
         public T Current
         {
             get
@@ -37,31 +41,41 @@ namespace CustomDictionary
                 return currentPair;
             }
         }
-
+        /// <summary>
+        /// This method does finalize for object.
+        /// </summary>
         public void Dispose()
         {
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// This method  goes over objects PairKeyAndValue and return their for  property Current.
+        /// </summary>
+        /// <returns></returns>
         public bool MoveNext()
         {
            if (Current == null && position == -1)
             {
                 position++;
-                currentPair = KeyAndValuePairs[position];
+                currentPair = listPairs[position];
                 return true;              
             }
-           if (position < KeyAndValuePairs.Count-1)
+           if (position < listPairs.Count-1)
             {
                 position++;
-                currentPair = KeyAndValuePairs[position];
+                currentPair = listPairs[position];
                 return true;
             }
             Reset();
             return false;
-                      
+
         }
 
+
+        /// <summary>
+        /// This method install default value for property currentPair.
+        /// </summary>
         public void Reset()
         {
             currentPair = default(T);

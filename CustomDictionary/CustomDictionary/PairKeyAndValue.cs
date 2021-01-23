@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace CustomDictionary
 {
-
-   public class PairKeyAndValue  <T,V>
+    /// <summary>
+    /// Class PairKeyAndValue generic keeps  pairs key-value.
+    /// </summary>
+    /// <typeparam name="T">This is first  generic parameter.It parameter will be key for pairs key-value. </typeparam>
+    /// <typeparam name="V">This is second  generic parameter. It parameter will be value for pairs key-value.</typeparam>
+    public class PairKeyAndValue  <T,V>
     {
         public T Key { get; set; }
         public V Value { get; set; }
@@ -22,6 +26,10 @@ namespace CustomDictionary
             
         }
 
+        /// <summary>
+        /// This method is override  virtual  method ToString.
+        /// </summary>
+        /// <returns>Return string</returns>
         public override string ToString()
         {
             return $"{Key}:{Value}";
