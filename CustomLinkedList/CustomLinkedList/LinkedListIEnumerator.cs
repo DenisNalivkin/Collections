@@ -9,9 +9,9 @@ namespace CustomLinkedList
 {
 
     /// <summary>
-    /// This class exist for realization IEnumerator interface generic.
+    /// Class exists for interface implementation IEnumerator generic.
     /// </summary>
-    /// <typeparam name="T"> This parameter will be the same like parameter generic from class CustomLinkedList.</typeparam>
+    /// <typeparam name="T"> This generic type determine what data type will to store in nodes.</typeparam>
     class LinkedListIEnumerator<T> : IEnumerator<T>
     {
         Node<T> head;
@@ -26,7 +26,7 @@ namespace CustomLinkedList
         {
             get
             {
-                return currentNode.value;
+                return currentNode.Value;
             }
         }
 
@@ -39,19 +39,17 @@ namespace CustomLinkedList
         }
 
         /// <summary>
-        /// This method  does finalize object.
+        /// Resetts unmanaged resources.
         /// </summary>
         public void Dispose()
         {
             GC.SuppressFinalize(this);
         }
 
-
         /// <summary>
-        /// This method goes over nodes in list and returh each current node for property Current.
-        ///  Also returns value true when method could to send node for property Current.
+        /// Advances the enumerator to the next element of the collection.
         /// </summary>
-        /// <returns> Returns value true when method could to send node for property Current. </returns>
+        /// <returns> Returns true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection. </returns>
         public bool MoveNext()
         {
             if (currentNode == null)
@@ -59,9 +57,9 @@ namespace CustomLinkedList
                 currentNode = head;         
                 return true;
             }
-            if (currentNode.nextNode != null)
+            if (currentNode.NextNode != null)
             {
-                currentNode = currentNode.nextNode;
+                currentNode = currentNode.NextNode;
                 return true;
             }
             Reset();

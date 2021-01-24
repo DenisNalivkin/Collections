@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace CustomLinkedList
 {
     /// <summary>
-    /// This class keeps data in list.List has nodes which keep data.
+    /// Represents a list of objects that can be accessed by index. 
     /// </summary>
-    /// <typeparam name="T">List might keeps generic data.User will be determine type data.</typeparam>
-  public class CustomLinkedList<T>: IEnumerable<T>
+    /// <typeparam name="T">Represents the type of elements in the list.</typeparam>
+    public class CustomLinkedList<T>: IEnumerable<T>
     {
         Node<T> head { get; set; }
         Node<T> tail { get; set; }
@@ -23,9 +23,9 @@ namespace CustomLinkedList
         }
 
         /// <summary>
-        /// This method adds new data in list.
+        /// Adds a new element in the List.
         /// </summary>
-        /// <param name="value">Value will be save in list. </param>
+        /// <param name="value">Data to be added in the List. </param>
         public void Add(T value)
         {
             Node<T> nodeWithNewValue = new Node<T>(value, null, null);
@@ -36,23 +36,21 @@ namespace CustomLinkedList
                 Count += 1;
                 return;
             }
-            nodeWithNewValue.previousNode = tail;
-            tail.nextNode = nodeWithNewValue;
+            nodeWithNewValue.PreviousNode = tail;
+            tail.NextNode = nodeWithNewValue;
             tail = nodeWithNewValue;
             Count += 1;
         }
 
 
-
-
         /// <summary>
-        /// Indexator will be to search value in list.Value index determine in input parameter. 
+        /// Gets or sets the element at the specified index.
         /// </summary>
-        /// <param name="index">Index which will be to use for search value in list </param>
+        /// <param name="index">Index which will to use for search value in list.</param>
         /// <exception>
         /// ArgumentOutOfRangeException
         /// </exception>
-        /// <returns> Value which was found. </returns>
+        /// <returns> Value which was found or exception if value was not found.</returns>
         public T this[int index]
         {
             get
@@ -68,7 +66,7 @@ namespace CustomLinkedList
                     currentNode = head;
                     for (int i = 0; i < index; i++)
                     {
-                        currentNode = currentNode.nextNode;
+                        currentNode = currentNode.NextNode;
                     }
                 }
                 else
@@ -76,10 +74,10 @@ namespace CustomLinkedList
                     currentNode = tail;
                     for (int i = Count - 1; i > index; i--)
                     {
-                        currentNode = currentNode.previousNode;
+                        currentNode = currentNode.PreviousNode;
                     }
                 }
-                return currentNode.value;
+                return currentNode.Value;
             }
 
             set
@@ -95,31 +93,31 @@ namespace CustomLinkedList
                     currentNode = head;
                     for (int i = 0; i < index; i++)
                     {
-                        currentNode = currentNode.nextNode;
+                        currentNode = currentNode.NextNode;
                     }
-                    currentNode.value = value;
+                    currentNode.Value = value;
                 }
                 else
                 {
                     currentNode = tail;
                     for (int i = Count - 1; i > index; i--)
                     {
-                        currentNode = currentNode.previousNode;
+                        currentNode = currentNode.PreviousNode;
                     }
-                    currentNode.value = value;
+                    currentNode.Value = value;
                 }
             }
 
         }
 
         /// <summary>
-        /// This method insert new data in list by index.
+        /// Inserts a new element into the List at the specified index.
         /// </summary>
         /// <exception >
         /// ArgumentOutOfRangeException
         /// </exception>
-        /// <param name="value"> Value determine data which will be insert in list by index. </param>
-        /// <param name="index"> Index determine place insert new value in list. </param>
+        /// <param name="value"> The element which will insert.</param>
+        /// <param name="index"> Index at which element should be inserted.</param>
         public void Insert(T value, int index)
         {
             if (index >= Count)
@@ -127,13 +125,13 @@ namespace CustomLinkedList
                 throw new System.ArgumentOutOfRangeException();
             }
             Node<T> currentNode = head;
-            Node<T> nodeWithValueInsert = new Node<T>(value, null, null);
-            Node<T> copyPreviousNodeLocatedBeforeInsertValueNode;
+            Node<T> nodeToInsert = new Node<T>(value, null, null);
+            Node<T> previousNodeCopy;
             if (index == 0)
             {
-                nodeWithValueInsert.nextNode = head;
-                head.previousNode = nodeWithValueInsert;
-                head = nodeWithValueInsert;
+                nodeToInsert.NextNode = head;
+                head.PreviousNode = nodeToInsert;
+                head = nodeToInsert;
                 Count += 1;
                 return;
             }
@@ -141,14 +139,14 @@ namespace CustomLinkedList
             {
                 for (int i = 0; i < index; i++)
                 {
-                    currentNode = currentNode.nextNode;
+                    currentNode = currentNode.NextNode;
                 }
-                copyPreviousNodeLocatedBeforeInsertValueNode = currentNode.previousNode;
-                nodeWithValueInsert.nextNode = currentNode;
-                nodeWithValueInsert.previousNode = copyPreviousNodeLocatedBeforeInsertValueNode;
-                currentNode.previousNode = nodeWithValueInsert;
-                currentNode = copyPreviousNodeLocatedBeforeInsertValueNode;
-                currentNode.nextNode = nodeWithValueInsert;
+                previousNodeCopy = currentNode.PreviousNode;
+                nodeToInsert.NextNode = currentNode;
+                nodeToInsert.PreviousNode = previousNodeCopy;
+                currentNode.PreviousNode = nodeToInsert;
+                currentNode = previousNodeCopy;
+                currentNode.NextNode = nodeToInsert;
                 Count += 1;
                 return;
             }
@@ -158,61 +156,61 @@ namespace CustomLinkedList
                 currentNode = tail;
                 for (int i = Count - 1; i > index; i--)
                 {
-                    currentNode = currentNode.previousNode;
+                    currentNode = currentNode.PreviousNode;
                 }
-                copyPreviousNodeLocatedBeforeInsertValueNode = currentNode.previousNode;
-                nodeWithValueInsert.nextNode = currentNode;
-                nodeWithValueInsert.previousNode = copyPreviousNodeLocatedBeforeInsertValueNode;
-                currentNode.previousNode = nodeWithValueInsert;
-                currentNode = copyPreviousNodeLocatedBeforeInsertValueNode;
-                currentNode.nextNode = nodeWithValueInsert;
+                previousNodeCopy = currentNode.PreviousNode;
+                nodeToInsert.NextNode = currentNode;
+                nodeToInsert.PreviousNode = previousNodeCopy;
+                currentNode.PreviousNode = nodeToInsert;
+                currentNode = previousNodeCopy;
+                currentNode.NextNode = nodeToInsert;
                 Count += 1;
                 return;
             }
         }
 
         /// <summary>
-        /// This method removes data from list by determine value.Value determine in input parameter.
+        /// Removes a specified element from the List.
         /// </summary>
-        /// <param name="value">Value which have got to find and remove.</param>
-        /// <returns>Return true if value was found and removed, and will return false if value was not found. </returns>
+        /// <param name="value">The element which will remove from the List.</param>
+        /// <returns>Returns true if element is successfully removed; otherwise, false. This method also returns false if element was not found in the List. </returns>
         public bool Remove(T value)
         {
             Node<T> currentNode = head;
-            Node<T> copyPreviousNodeLocatedBeforeRemoveNode;
+            Node<T> previousNodeCopy;
             bool valueWasRemoved = false; 
             for (int i = 0; i < Count; i++)
             {
-                if (currentNode.value.Equals(value) && currentNode == head)
+                if (currentNode.Value.Equals(value) && currentNode == head)
                 {
-                    currentNode = currentNode.nextNode;
-                    currentNode.previousNode = null;
+                    currentNode = currentNode.NextNode;
+                    currentNode.PreviousNode = null;
                     head = currentNode;
                     valueWasRemoved = true;
                     Count -= 1;
                     return valueWasRemoved;
                 }
-                if (currentNode.value.Equals(value) && currentNode == tail)
+                if (currentNode.Value.Equals(value) && currentNode == tail)
                 {
-                    currentNode = currentNode.previousNode;
-                    currentNode.nextNode = null;
+                    currentNode = currentNode.PreviousNode;
+                    currentNode.NextNode = null;
                     tail = currentNode;
                     Count -= 1;
                     valueWasRemoved = true;
                     return valueWasRemoved;
                 }
-                else if (currentNode.value.Equals(value)) 
+                else if (currentNode.Value.Equals(value)) 
                 {
-                    currentNode = currentNode.previousNode;
-                    copyPreviousNodeLocatedBeforeRemoveNode = currentNode;
-                    currentNode.nextNode = currentNode.nextNode.nextNode;
-                    currentNode = currentNode.nextNode;
-                    currentNode.previousNode = copyPreviousNodeLocatedBeforeRemoveNode;                   
+                    currentNode = currentNode.PreviousNode;
+                    previousNodeCopy = currentNode;
+                    currentNode.NextNode = currentNode.NextNode.NextNode;
+                    currentNode = currentNode.NextNode;
+                    currentNode.PreviousNode = previousNodeCopy;                   
                     Count -= 1;
                     valueWasRemoved = true;
                     return valueWasRemoved;
                 }
-                currentNode = currentNode.nextNode;
+                currentNode = currentNode.NextNode;
             }
             return valueWasRemoved;
         }
@@ -232,19 +230,19 @@ namespace CustomLinkedList
 
 
         /// <summary>
-        ///  This method exist for realization interface IEnumerable generic.
+        ///  This method exists for interface implementation Ienumerable generic.
         /// </summary>
-        /// <returns>Returns object which  realizations interface  IEnumerator generic.</returns>
+        /// <returns>Returns object which implement interface IEnumerator generic.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             return new LinkedListIEnumerator<T>(head);
         }
 
         /// <summary>
-        /// This method exist for realization interface IEnumerable.
+        /// This method exists for interface implementation  Ienumerable.
         /// </summary>
         /// <returns>
-        /// Returns object which  realizations interface  IEnumerator.
+        /// Returns object which implement interface Ienumerator.
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {

@@ -8,14 +8,14 @@ namespace CustomLinkedList
 {
 
     /// <summary>
-    /// This class exist for keep data which after then will be keep in list.
+    /// Class created for store data which after then will store in the list.
     /// </summary>
-    /// <typeparam name="T"> Node might keeps generic data.User will be determine type data.</typeparam>
+    /// <typeparam name="T"> Node keeps generic data. User will  determine type data.</typeparam>
     public class Node <T>
     {
-       public T value { get; set; }
-       public Node<T> previousNode { get; set; }
-       public Node<T> nextNode { get; set; }
+       public T Value { get; set; }
+       public Node<T> PreviousNode { get; set; }
+       public Node<T> NextNode { get; set; }
 
         public Node()
         {
@@ -24,9 +24,9 @@ namespace CustomLinkedList
 
         public Node( T value, Node<T> previousNode, Node<T> nextNode)
         {
-            this.value = value;
-            this.previousNode = previousNode;
-            this.nextNode = nextNode;
+            this.Value = value;
+            this.PreviousNode = previousNode;
+            this.NextNode = nextNode;
         }
     }
 }
