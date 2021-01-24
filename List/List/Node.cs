@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace List
 {
     /// <summary>
-    /// This class created for keep data which after then will be keep in list.
+    /// Class created for keep data which after then will keep in the list.
     /// </summary>
-    /// <typeparam name="T">Node might keeps generic data.User will be determine type data.</typeparam>
+    /// <typeparam name="T">Node keeps generic data. User will  determine type data.</typeparam>
     class Node<T>
     {
        public T Value { get;  set; }
@@ -25,28 +25,6 @@ namespace List
             Value = value;
             NextNode = nextNode;
         }
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

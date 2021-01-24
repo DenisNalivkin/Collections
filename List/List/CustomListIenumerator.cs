@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace List
 {
     /// <summary>
-    /// This class exist for realization IEnumerator interface generic.
+    /// Class exists for  interface  implementation IEnumerator generic.
     /// </summary>
-    /// <typeparam name="T"> This parameter will be the same like parameter generic from class CustomList.</typeparam>
+    /// <typeparam name="T"> This generic type determine what data type will keep in nodes.</typeparam>
     class CustomListIenumerator<T> : IEnumerator<T>
     {
         Node<T> head;
@@ -22,7 +22,6 @@ namespace List
             this.head = head;
             currentNode = null;
         }
-
 
         public T Current
         {
@@ -41,7 +40,7 @@ namespace List
         }
 
         /// <summary>
-        /// This method  does finalize object.
+        ///  Resetts unmanaged resources.
         /// </summary>
         public void Dispose()
         {
@@ -49,10 +48,9 @@ namespace List
         }
 
         /// <summary>
-        /// This method goes over nodes in list and return each current node for property Current.
-        /// Also returns value true when method could to send node for property Current.
+        /// Advances the enumerator to the next element of the collection.
         /// </summary>
-        /// <returns> Returns value true when method could to send node for property Current.</returns>
+        /// <returns>Returns true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
         public bool MoveNext()
         {
             if(currentNode == null )

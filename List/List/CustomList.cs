@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace List
 {
     /// <summary>
-    /// This class keeps data in list. List has nodes which keep data.
+    /// Represents a  list of objects that can be accessed by index. 
     /// </summary>
-    /// <typeparam name="T"> List might keeps generic data.User will be determine type data.</typeparam>
+    /// <typeparam name="T"> Represents the type of elements in the list.</typeparam>
     public class CustomList<T>: IEnumerable<T>
     {
         Node<T> head;
@@ -18,9 +18,9 @@ namespace List
         public int count { get; protected set; }
 
         /// <summary>
-        /// This method adds new data in list.
+        /// Adds a new element in the List.
         /// </summary>
-        /// <param name="value">Value will be save in list. </param>
+        /// <param name="value">Data to be added in the List.</param>
         public void Add(T value)
         {
             if (head == null)
@@ -38,13 +38,13 @@ namespace List
         }
 
         /// <summary>
-        /// Indexator will be to search value in list.Value index determine in input parameter.
+        /// Gets or sets the element at the specified index.
         /// </summary>
-        /// <param name="index"> Index which will be to use for search value in list.</param>
+        /// <param name="index"> Index which will to use for search value in list.</param>
         /// <exception>
         /// IndexOutOfRangeException
         /// </exception>
-        /// <returns> Value which was found </returns>
+        /// <returns> Value which was found or exception if value was not found. </returns>
         public T this[int index]
         {
             get
@@ -79,13 +79,13 @@ namespace List
         }
 
         /// <summary>
-        /// This method insert new data in list by index.
+        /// Inserts a new element into the List at the specified index.
         /// </summary>
         /// <exception >
         /// ArgumentOutOfRangeException
         /// </exception >
-        /// <param name="index"> Value determine data which will be insert in list by index.  </param>
-        /// <param name="value"> Index determine place insert new value in list. </param>
+        /// <param name="index"> Index at which element should be inserted.  </param>
+        /// <param name="value"> The element which will insert. </param>
         public void Insert(int index, T value)
         {
             Node<T> currentNode = head;
@@ -111,18 +111,16 @@ namespace List
                 previousNode = currentNode;
                 currentNode = currentNode.NextNode;         
             }
-
             nodeToInsert.NextNode = currentNode;
-            previousNode.NextNode = nodeToInsert;
-          
+            previousNode.NextNode = nodeToInsert;        
             count += 1;
         }
 
         /// <summary>
-        /// This method removes data from list by determine value.Value determine in input parameter.
+        /// Removes a specified element from the List.
         /// </summary>
-        /// <param name="value"> Value which have got to find and remove.</param>
-        /// <returns> Return true if value was found and removed, and will return false if value was not found.</returns>
+        /// <param name="value"> The element which will remove from the List.</param>
+        /// <returns>Returns true if element is successfully removed; otherwise, false. This method also returns false if element was not found in the List..</returns>
         public bool Remove(T value)
         {
             Node<T> currentNode = head;
@@ -168,22 +166,22 @@ namespace List
                 tail = null;
                 count = 0;
                 return;
-            }  
+            }
         }
 
         /// <summary>
-        /// This method exist for realization interface IEnumerable generic.
+        /// This method exists for interface implementation Ienumerable generic.
         /// </summary>
-        /// <returns> Returns object which  realization interface  IEnumerator generic.</returns>
+        /// <returns>  Returns object which implement interface IEnumerator generic.</returns>
         public IEnumerator<T> GetEnumerator()
         {
             return new CustomListIenumerator<T>(head);
         }
 
         /// <summary>
-        /// This method exist for realizations interface IEnumerable.
+        /// This method exists for interface implementation  IEnumerable.
         /// </summary>
-        /// <returns> Returns object which  realizations interface  IEnumerator.</returns>
+        /// <returns> Returns object which implement interface IEnumerator.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
