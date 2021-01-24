@@ -13,14 +13,14 @@ namespace CustomDictionary
     /// <typeparam name="T">This generic type is object class PairKeyAndValue. </typeparam>
     class CustomDictionaryIEnumeratorT_V <T>: IEnumerator<T>
     {
-        List<T> listPairs;
+        List<T> keyValuePairs;
         T currentPair;
         private int position;
       
 
         public CustomDictionaryIEnumeratorT_V(List<T> KeyAndValuePairs)
         {
-            this.listPairs = KeyAndValuePairs;
+            this.keyValuePairs = KeyAndValuePairs;
             this.position = -1;
         }
 
@@ -50,7 +50,7 @@ namespace CustomDictionary
         }
 
         /// <summary>
-        /// This method  goes over objects PairKeyAndValue and return their for  property Current.
+        /// This method  goes over objects PairKeyAndValue and return them for  property Current.
         /// </summary>
         /// <returns></returns>
         public bool MoveNext()
@@ -58,13 +58,13 @@ namespace CustomDictionary
            if (Current == null && position == -1)
             {
                 position++;
-                currentPair = listPairs[position];
+                currentPair = keyValuePairs[position];
                 return true;              
             }
-           if (position < listPairs.Count-1)
+           if (position < keyValuePairs.Count-1)
             {
                 position++;
-                currentPair = listPairs[position];
+                currentPair = keyValuePairs[position];
                 return true;
             }
             Reset();

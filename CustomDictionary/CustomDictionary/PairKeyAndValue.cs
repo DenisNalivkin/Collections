@@ -9,8 +9,8 @@ namespace CustomDictionary
     /// <summary>
     /// Class PairKeyAndValue generic keeps  pairs key-value.
     /// </summary>
-    /// <typeparam name="T">This is first  generic parameter.It parameter will be key for pairs key-value. </typeparam>
-    /// <typeparam name="V">This is second  generic parameter. It parameter will be value for pairs key-value.</typeparam>
+    /// <typeparam name="T">This parameter represents the type of Key for key-value pairs. </typeparam>
+    /// <typeparam name="V">This parameter represents the type of Value for key-value pairs.</typeparam>
     public class PairKeyAndValue  <T,V>
     {
         public T Key { get; set; }
